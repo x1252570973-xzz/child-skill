@@ -1,8 +1,8 @@
 # 来源、许可与检索记录
 
-收录日期：2026-11-17。目标：找出**开源**的「健康科普 / 儿童健康科普 / 口播」类 Agent Skill。同日完成两批收录：第一批 17 个技能（健康科普与口播），第二批 30 个技能（儿童健康科普专辑）。
+收录日期：2026-11-17。目标：找出**开源**的「健康科普 / 儿童健康科普 / 口播 / 自动剪辑」类 Agent Skill。同日完成三批收录：第一批 17 个技能（健康科普与口播），第二批 30 个技能（儿童健康科普专辑），第三批 16 个技能（自动剪辑专辑）。累计 63 个技能、421 个文件，来自 13 个上游仓库。
 
-## 一、已收录的上游项目
+## 一、已收录的上游项目（第一、二批）
 
 ### 1. LeoYeAI/agent-master-skills
 
@@ -48,7 +48,28 @@
 
 依据的公开指南：国家卫生健康委《儿童青少年肥胖食养指南（2024 年版）》、《儿童青少年生长迟缓食养指南（2023 年版）》、中华中医药学会《儿童青少年肥胖治未病干预指南》（2026）、STRONGkids / STAMP 等儿童营养风险筛查量表。为保持技能可用，连同 `knowledge_base.md`、`recipes_data.md`、`system_prompt.md`、`kpk_*.md`、`src/*.py`、`references/scoring.md` 等支撑文件一并收录；仅省略上游安装脚本、测试与二进制示例文件。
 
-## 二、找到但未收录的候选（及原因）
+## 二、第三批：自动剪辑专辑的 10 个来源
+
+本批新增 `skills/auto-video-editing/`，16 个技能 / 17 份 SKILL.md / 301 个上游文件（约 4.5 MB），另收 10 份根 LICENSE 原文。详细的技能清单、依赖与快速选择见 [`skills/auto-video-editing/_INDEX.md`](skills/auto-video-editing/_INDEX.md)，归属细节见 [`skills/auto-video-editing/SOURCE.md`](skills/auto-video-editing/SOURCE.md)。
+
+| # | 上游仓库 | Star | 许可证 | 收录路径 | 上游原始路径 | LICENSE 副本 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) | 7590 | **MIT** | `ffmpeg-skill/` | `SKILL.md`、`skills/ffmpeg-skill/SKILL.md`、`scripts/*.py`（42 工具）、`mcp/server.py` | `kajisho5-ffmpeg-skill-MIT.txt` |
+| 2 | [op7418/Youtube-clipper-skill](https://github.com/op7418/Youtube-clipper-skill) | 2330 | **MIT** | `youtube-clipper/` | `SKILL.md`、`scripts/`、`references/`、`templates/`、`.env.example` | `op7418-Youtube-clipper-skill-MIT.txt` |
+| 3 | [Backtthefuture/videocut-skills](https://github.com/Backtthefuture/videocut-skills) | 13 | **MIT** | `videocut-skills/剪口播/`、`docs/` | `剪口播/`（SKILL.md + 9 个脚本 + 用户习惯/） | `Backtthefuture-videocut-skills-MIT.txt` |
+| 4 | [xianyu110/ecommerce-video-skills](https://github.com/xianyu110/ecommerce-video-skills) | 144 | **MIT** | `ecommerce-video-skills/` 下 3 个技能 | `skills/{ffmpeg-auto-assemble,live-stream-clips,platform-spec-export}/` | `xianyu110-ecommerce-video-skills-MIT.txt` |
+| 5 | [zenstory-ai/video-recap-skills](https://github.com/zenstory-ai/video-recap-skills) | 635 | **MIT** | `video-recap/` | `skills/video-recap/`（SKILL.md、references/、scripts/、assets/dashboard/） | `zenstory-video-recap-skills-MIT.txt` |
+| 6 | [ZJU-REAL/Easel](https://github.com/ZJU-REAL/Easel) | 4743 | **Apache-2.0** | `easel-video-skills/` 下 3 个技能 | `skills/builtin/{auto-short-video,clipify,video-editing}/` | `ZJU-REAL-Easel-Apache-2.0.txt` |
+| 7 | [bytedance/agentkit-samples](https://github.com/bytedance/agentkit-samples) | 492 | **Apache-2.0** | `byted-mediakit/` 下 2 个技能 | `skills/byted-mediakit-{videoedit,process-tools}/`（含各自 LICENSE） | `bytedance-agentkit-samples-Apache-2.0.txt` |
+| 8 | [sun-guannan/VectCutAPI](https://github.com/sun-guannan/VectCutAPI) | 2383 | **Apache-2.0** | `vectcut/skill/`、`vectcut/capcut-director/` | `vectcut-skill/skill/`、`.agents/skills/capcut-director/` | `sun-guannan-VectCutAPI-Apache-2.0.txt` |
+| 9 | [znyupup/ai-video-editing-skill](https://github.com/znyupup/ai-video-editing-skill) | 183 | **MIT** | `vlog-auto-edit/` | `SKILL.md`、`README.md`、`examples/`、`scripts/`、`templates/` | `znyupup-ai-video-editing-skill-MIT.txt` |
+| 10 | [foryourhealth111-pixel/Vibe-Skills](https://github.com/foryourhealth111-pixel/Vibe-Skills) | 3827 | **Apache-2.0** | `video-studio/` | `bundled/skills/video-studio/` | `Vibe-Skills-Apache-2.0.txt` |
+
+以上 LICENSE 副本均位于 `LICENSES/`。筛选标准是**能真正跑起来**：只收带脚本 / CLI / 知识库 / 参考文档的完整技能包，纯提示词占位模板不收；下载后扫描过疑似硬编码密钥（`sk-`、`AKIA`、`ghp_`），结果为空。
+
+依赖边界（详见 `_INDEX.md`）：`ffmpeg-skill`、`ecommerce-video-skills/*`、`video-studio`、`vlog-auto-edit` 完全本地、无需 API Key；`youtube-clipper`（LLM 翻译）、`剪口播`（火山引擎 ASR）、`video-recap`（ASR/TTS）、`byted-mediakit/*`（火山引擎 mediakit，带本地 ffmpeg 回退）、`vectcut/*`（VectCutAPI 云端）、`easel-video-skills/*`（AI 生成零件）需要外部凭证或同生态组件。`ffmpeg-skill` 的插件版 SKILL.md 依赖 `../../scripts/` 相对路径，因此整包目录层级照搬，未做扁平化。
+
+## 三、找到但未收录的候选（及原因）
 
 ### 第一批
 
@@ -60,7 +81,7 @@
 | `youtube-script-master` / `youtube-script-hinglish`（`drshailesh88/integrated_content_OS`） | 心脏病学科普 YouTube 脚本，循证 + PubMed + 辟谣结构 | 仓库无 LICENSE；且强依赖私有 research-engine 数据管线，脱离后不可用 |
 | `mofyer/pop-science-video` | MIT 开源科普视频生成工具（分镜、配音、成片） | 是完整项目 / 工具，不是 `SKILL.md` 技能包，故只在清单中索引：https://github.com/mofyer/pop-science-video |
 | `Alchemica369/local-explainer-video` | 把临床报告转成患者易懂的讲解视频（本地离线） | 无 LICENSE，且是应用不是技能包 |
-| `majiayu000/claude-skill-registry` | MIT、742 Star 的大型技能注册表，含 200+ 医疗类技能 | 第一批核实为可靠开源来源，但技能多为医疗信息化 / OCR / 病历方向；第二批复核其 3.3 万个 `SKILL.md` 路径，未发现儿童健康科普类技能 |
+| `majiayu000/claude-skill-registry` | MIT、744 Star 的大型技能注册表，含 200+ 医疗类技能 | 第一批核实为可靠开源来源，但技能多为医疗信息化 / OCR / 病历方向；第二批复核其 3.3 万个 `SKILL.md` 路径，未发现儿童健康科普类技能 |
 | `SpaceZephyr/creator-buddy`、`wwwzhouhui/skills_collection` | 含口播稿 / 科普视频类技能（1917 / 297 Star） | GitHub 均返回 `NOASSERTION`，无明确许可证 |
 
 ### 第二批（儿童健康方向）
@@ -69,22 +90,33 @@
 | --- | --- | --- |
 | `huifer/wellally-health-skills` | 有 `child-development`、`child-illness`、`child-mental`、`child-nutrition`、`child-safety`、`child-sleep`、`child-vaccine`、`growth`、`puberty` 共 9 个儿童健康技能，每个约 5–7 KB，基于 ASQ-3 / Denver II / WHO 生长曲线，**质量很高、最贴题** | 仓库无 LICENSE（GitHub `NOASSERTION`），README 明写 **"Copyright (c) Wellally. All rights reserved."** → 不是开源，不能收录。注意同作者的 `huifer/WellAlly-health`（MIT、967★）是另一个仓库，并不包含这些儿童技能，不能据此推定授权 |
 | `caishengold/ai-agent-ops` 的 `baby-product-reviewer` / `dental-content-writer` / `vision-care-writer` | 婴幼儿用品评测、口腔与视力科普写作 | 仓库仍无 LICENSE（`NOASSERTION`），沿用第一批结论 |
-| `runyuan-wang/nutrition-assistants` 的 `nutrition-lesson-generator-zh` | MIT，营养科普课程生成器（讲稿 / 大纲 / PPT + PubMed 引用校验），可做儿童营养科普内容 | 已确认 MIT，但不专属于儿童方向；本批聚焦儿童主题，留作后续扩展。仓库内另有 `china-food-composition` 等通用营养技能同理 |
-| `smyx-sunjinhui/smyx-open-claw-skills` | MIT，含 `infant-cry-analysis`、`infant-suffocation-warning-analysis`、`infant-safety-monitoring-analysis`、`child-dangerous-behavior-recognition-analysis`、`autism-analysis` 等 | 属摄像头 / 视觉信号监测分析技能，依赖外部 API 与图像输入，不是科普内容技能 |
+| `runyuan-wang/nutrition-assistants` 的 `nutrition-lesson-generator-zh` | MIT，营养科普课程生成器（讲稿 / 大纲 / PPT + PubMed 引用校验），可做儿童营养科普内容 | 已确认 MIT，但不专属于儿童方向；本批聚焦儿童主题，留作后续扩展 |
+| `smyx-sunjinhui/smyx-open-claw-skills` | MIT，含 `infant-cry-analysis`、`infant-suffocation-warning-analysis`、`child-dangerous-behavior-recognition-analysis`、`autism-analysis` 等 | 属摄像头 / 视觉信号监测分析技能，依赖外部 API 与图像输入，不是科普内容技能 |
 | `sickn33/agentic-awesome-skills` | MIT、约 4.9 万 Star、9500+ 技能 | 按 `child / pediatric / infant` 检索未发现儿科健康类 SKILL.md |
 | `Ruacha00/MediPet`、`Zh-Med/Skill-of-Diagnostic`、`Biangi/medical-consultation-prep`、`lyjps/Capybara` | 医疗问诊 / 诊断辅助类技能 | 无明确许可证或为通用诊疗方向，非儿童科普 |
 
+### 第三批（自动剪辑方向）
+
+| 候选 | 未收录原因 |
+| --- | --- |
+| `sun-guannan/VectCutSkill`（16★）、`Hommy-master/capcut-mate-skill`（60★）、`JustAIPlay/auto_edit_video`、`Gonglitian/agent-skills` | GitHub 均返回 `NOASSERTION`，无明确许可证。其中 VectCutSkill 的剪映能力已由**同作者的 Apache-2.0 仓库** `VectCutAPI` 覆盖，故收录后者 |
+| `wubin1836/ai-hive-agent-skills`（MIT，含 `talking-video-silence-cut-ai-hive`、`video-editing-toolkit-ai-hive`） | 仓库含 6000+ SKILL.md 且多为纯提示词模板，本批聚焦可运行技能包；留作后续扩展 |
+| `modbender/skill-library-mcp`（MIT，`autoclip-pro`、`video-pipeline-bundle`） | 第三方再打包的技能库，无法确认上游授权链 |
+| `sickn33/agentic-awesome-skills`（MIT、约 4.9 万★）、`LeoYeAI/agent-master-skills`（MIT）、`majiayu000/claude-skill-registry`（MIT、744★） | 按 `video-edit / ffmpeg / 剪辑` 定向检索未发现专门的自动剪辑技能（`LeoYeAI` 的 `fcpx-assistant`、`tencent-mps` 属剪辑辅助 / 云媒体处理，非自动剪辑工作流） |
+| `yikart/AiToEarn`（MIT、2.8 万★）的 `editing-videos` | 与该项目后端强绑定，脱离后不可用 |
+| `ops120/video-recap-skills-plus`、`ceoifung/ai-short-drama`、`lj1270998580-crypto/JaygoCut`、`Wanfeng1028/muse` | 与已收录的 `video-recap` / `ffmpeg-auto-assemble` / 剪映自动化能力重复，或为二次打包 |
+
 如果后续确认了上述某个项目的授权（尤其是 `wellally-health-skills`），可以按同样的目录结构补录，并在本文件登记。
 
-## 三、检索方式
+## 四、检索方式
 
-- GitHub 代码搜索：`"健康科普" filename:SKILL.md`、`"口播" filename:SKILL.md`、`"口播稿" filename:SKILL.md`、`"儿童" filename:SKILL.md`、`"儿科" filename:SKILL.md`、`"儿童" "健康科普" filename:SKILL.md`、`child OR pediatric OR infant filename:SKILL.md repo:<owner>/<repo>` 等。
-- GitHub `git/trees/<branch>?recursive=1` 拉取大仓库完整路径清单，按拼音 / 英文关键词（ertong、xiaoer、yinger、yimiao、shouzukou、haimulike、pediatric、child-obesity、STRONGkids 等）分组筛选，再逐个读取内容判断质量。
-- GitHub 仓库元数据 API 核对 `license.spdx_id`、star、默认分支；**逐仓库读取 LICENSE 原文与 README 的 License 段**，不依赖第三方目录站的标注（本次正是靠这一步排除了 `wellally-health-skills`）。
+- GitHub 代码搜索：`"健康科普" filename:SKILL.md`、`"口播" filename:SKILL.md`、`"口播稿" filename:SKILL.md`、`"儿童" filename:SKILL.md`、`"儿科" filename:SKILL.md`、`"自动剪辑" filename:SKILL.md`、`"视频剪辑" filename:SKILL.md`、`video-edit OR ffmpeg filename:SKILL.md`、`repo:` 定向检索等。
+- GitHub `git/trees/<branch>?recursive=1` 拉取大仓库完整路径清单，按拼音 / 英文关键词（ertong、xiaoer、yimiao、STRONGkids、ffmpeg、clip、cut、recap 等）分组筛选；对自动剪辑类额外按**是否带 scripts / references / CLI** 过滤，再逐个读 SKILL.md frontmatter 确认触发条件与依赖。
+- GitHub 仓库元数据 API 核对 `license.spdx_id`、star、默认分支；**逐仓库读取 LICENSE 原文与 README 的 License 段**，不依赖第三方目录站的标注（第二批正是靠这一步排除了 `wellally-health-skills`）。
 - 公开技能目录（SkillHub、Med Skill Store、Skillselion、VibeCrowd）交叉比对技能名称与来源仓库。
 
-## 四、归属与再分发
+## 五、归属与再分发
 
-所有收录文件均**未修改**，保留原 `SKILL.md` frontmatter（含 `name`、`description`、`license`、`metadata.skill-author` / `submitted_by`）。MIT 许可证要求保留版权声明与许可文本，因此三份上游 LICENSE 原文均放在 `LICENSES/`，各专辑目录下另有 `SOURCE.md` 记录具体来源路径与链接。
+所有收录文件均**未修改**，保留原 `SKILL.md` frontmatter（含 `name`、`description`、`license`、`version`、`author`、`allowed-tools`、`metadata.skill-author` / `submitted_by`）。MIT 与 Apache-2.0 均要求保留版权与许可声明，因此 13 份上游根 LICENSE 原文统一放在 `LICENSES/`；包内独立许可证（`nutrition-risk-screening-calculator/LICENSE`、`byted-mediakit/*/LICENSE`、`vectcut/LICENSE`、`video-recap/references/jianying/LICENSE.duo-video`）随原路径保留。各专辑目录下另有 `SOURCE.md` 记录具体来源路径与链接。Apache-2.0 项目如做修改需按许可证第 4 条注明变更，本仓库未作修改。
 
 `yemugua/agent-skills` 的授权状态需在再分发前二次确认：其 LICENSE 只有一行 MIT 声明，GitHub 返回 `NOASSERTION`。本仓库已在 README、`_INDEX.md`、`SOURCE.md` 三处明确标注该风险。
